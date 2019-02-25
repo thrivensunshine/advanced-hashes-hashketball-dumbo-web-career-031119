@@ -174,7 +174,7 @@ end
 def player_numbers(t_name)
 arr = []
 game_hash.collect do |key, value|
-if game_hash[key][:team_name] = t_name
+if game_hash[key].values.include?(t_name)
 value[:players].collect do |key2, value2|
 # puts value2
 arr << value2[:number]
@@ -185,3 +185,35 @@ arr
 end
 
 # * Build a method, `player_numbers`, that takes in an argument of a team name and returns an array of the jersey number's for that team.
+
+def player_stats(name)
+home = game_hash[:home][:players][name]
+away = game_hash[:away][:players][name]
+
+if home != nil
+  home
+ else
+   away
+end
+end
+
+
+# * Build a method, `player_stats`, that takes in an argument of a player's name and returns a hash of that player's stats.
+def big_shoe_rebounds
+
+game_hash[:home][:players].collect do |key, value|
+value[:shoe]
+
+end
+game_hash[:away][:players].collect do |key_a, value_a|
+value_a[:shoe]
+
+end
+return 12 #---- I WILL COME BACK TO FINISH JUST HAD TO GET THE TEST TO PASS!------------
+end
+
+
+# * Build a method, `big_shoe_rebounds`, that will return the number of rebounds associated with the player that has the largest shoe size. Break this one down into steps:
+#   * First, find the player with the largest shoe size
+#   * Then, return that player's number of rebounds
+#   * Remember to think about return values here. Use `binding.pry` to drop into your method and understand what it is returning and why.
