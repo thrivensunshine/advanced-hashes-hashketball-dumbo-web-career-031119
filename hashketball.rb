@@ -199,19 +199,47 @@ end
 
 
 # * Build a method, `player_stats`, that takes in an argument of a player's name and returns a hash of that player's stats.
+
+
+# def big_shoe_rebounds
+
+# game_hash[:home][:players].collect do |key, value|
+# value[:shoe]
+
+# end
+# game_hash[:away][:players].collect do |key_a, value_a|
+# value_a[:shoe]
+
+# end
+# return 12 #---- I WILL COME BACK TO FINISH JUST HAD TO GET THE TEST TO PASS!------------
+# end
+# ------------ fixed ----------
 def big_shoe_rebounds
+ans = 0
+shoe_arr = []
+big = 0
 
-game_hash[:home][:players].collect do |key, value|
-value[:shoe]
+  game_hash.collect do |where, stats| 
+  
+  game_hash[where][:players].collect do |p_name,p_stats|
+  p_stats.collect do |stat_name,info|
+  puts 
+    if stat_name == :shoe
+    shoe_arr << info
+    # puts shoe_arr.max_by{|x| x}
+    big = shoe_arr.sort.last
+ 
+    if game_hash[where][:players][p_name][:shoe] == big
+  
+    ans = game_hash[where][:players][p_name][:rebounds]
 
+    end
+    end
+  end
+  end
+  end
+ans  
 end
-game_hash[:away][:players].collect do |key_a, value_a|
-value_a[:shoe]
-
-end
-return 12 #---- I WILL COME BACK TO FINISH JUST HAD TO GET THE TEST TO PASS!------------
-end
-
 
 # * Build a method, `big_shoe_rebounds`, that will return the number of rebounds associated with the player that has the largest shoe size. Break this one down into steps:
 #   * First, find the player with the largest shoe size
